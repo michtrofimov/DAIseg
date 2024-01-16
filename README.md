@@ -2,7 +2,7 @@
 DAIseg method is created to detect ancient introssed segments using unadmixed outgroup population and several reference archaic genomes(instead of Skov et al'18).
 
 ## Data preparation
-we need to prepare to files with observations connected with Outgroup and Neanderthals.
+we need to prepare two files with observations connected with Outgroup and Neanderthals obs1.txt and obs2.txt respectively. These files contains __sequence_length/ window size__ rows and  __number_observations__ columns.
 
 ## Estimation of parameters
 There are three main parameters in DAIseg model:
@@ -24,4 +24,5 @@ The resulting values of parameters are in par.file.txt with the following struct
 
 ## HMM 
 The command line of  HMM.py is 
+
 __HMM.py --HMM_par par.file.txt --obs1 obs1.txt --obs2 obs2.txt --o output.txt__
