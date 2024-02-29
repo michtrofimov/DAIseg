@@ -1,21 +1,23 @@
 # DAIseg
 DAIseg method is created to detect ancient introssed segments using unadmixed outgroup population and several reference archaic genomes.
 
+
+# Pipeline briefly
+0. (optionally) Run __panel.preparation.sh__ to glue 1000GP and neanderthal samples
+1. Run __./script.eu.sh__ to make observation files
+2. (optionally) Make estimations of coalescent times lambda_arch, lambda_split, lambda_intr
+3. Run DAI.seg to obtain archaic tracts of samples from  __observations.txt__
+
+
+
 # Files's summary
-*  __outgroup.txt__(Africa), __observations.txt__(European), __archaic.txt__(Neanderthals) are .txt files which consist  of the samples's ids written in a column
+*  __outgroup.txt__(Africa), __archaic.txt__(Neanderthals)  and __obs.samples.txt__(European),are .txt files which consist  of the samples's ids of reference Africans and Neanderthals and observable Europeans written in a column
 ```note
 NA18484
 NA18489
 GM19129
 ```
-*  __all.chr22.vcf.gz{.tbi}__ files where  all reference genomes(Outgroup and Archaic) and observable samples simultaneously with snps only (excluding indels, deletions etc.) is in it. The main reason of it is to avoid inconsistencies.
-*  __obs.....txt__ is 
-```note
-0 0 0 0 
-0 2 0 1
-0 0 1 0
-```
-Here is the example of four  observations sequences (one for  each column) with respect to one fixed reference populations. Each row corresponds to the number of variants obtained in the window of size L=1000.
+
 *  __par.file.txt__
 ```note
 1.25e-08    #mutation rate μ
@@ -27,11 +29,16 @@ lambda_split    #the mean value of derived alleles in a window of size L accumul
 lambda_intr    #the mean value of derived alleles in a window of size L accumulated during time t_intr and mutation rate μ 
 0.025    #admixture proportion of archaic introgression
 ```
+*  __all.chr22.vcf.gz{.tbi}__ files where  all reference genomes(Outgroup and Archaic) and observable samples simultaneously with snps only (excluding indels, deletions etc.) is in it. The main reason of it is to avoid inconsistencies.
+*  __obs.outgroup/neand.txt__ is 
+```note
+0 0 0 0 
+0 2 0 1
+0 0 1 0
+```
+Here is the example of four  observations sequences (one for  each column) with respect to one fixed reference populations. Each row corresponds to the number of variants obtained in the window of size L=1000.
 
-# Pipeline briefly
-0. (optionally) Run __panel.preparation.sh__
-1. Run __./script.eu.sh__
-2. (optionally)
+
 
 
 
@@ -42,16 +49,21 @@ The link to download 1000GP panel is http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/r
 
 The link to download archaic samples http://cdna.eva.mpg.de/neandertal/Vindija/VCF/ 
 
-
+Make .txt files with samples's names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
 
 In the  file __panel.preparation.sh__ change names of CURRENTDIR (path to current directory), NAME1000(name of vcf file of 1000GP),  DIRNEAND(directory with neanderthal genomes) and run it. The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
 ## Step 1. Data preparation. Make observations
-You need in  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  __./script.eu.sh__ and to  make observation  files __obs.neand.txt__, __obs.outgroup.txt__ and file with stard-end positions __par.file.txt__
+
+You need in  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
+
+>__./script.eu.sh__
+
+and to  make observation  files __obs.neand.txt__, __obs.outgroup.txt__ and file with default parameters and start-end positions __par.file.txt__
 
 
 
-By default  __par.file.txt__ is 
+
 
 
 
@@ -59,38 +71,41 @@ By default  __par.file.txt__ is
 
 ## Step 2. Estimation of parameters (optionally)
 There are three main parameters in DAIseg model:
-1. mean coalescent time between Neanderthals and AMH __t_n__,
-2. mean coalescent time between Outgroup and Ingroup __t_ooa__,
-3. introgression time of archaic segments into Ingroup __t_i__.
+1. Mean value of derived alleles in a window of size L accumulated during time t_arch  __lambda_archaic__,
+2. Mean value of derived alleles in a window of size L accumulated during time t_split  __lambda_split__,
+3. Mean value of derived alleles in a window of size L accumulated during time t_intr  __lambda_intr__.
 
-For example, Outgroup = some African population, Ingroup = Modern Europeans.
+__par.file.txt__ obtained on the previous step could be used as the initial guess for EM algorithm.
 
-The resulting values of parameters are in par.file.txt with the following structure(line by line):
-* Mutation rate,
-* Recombination rate, 
-* Window size,
-* Full sequence length in bp, 
-* t_n,
-* t_ooa,
-* t_i.
+There are two possible options to estimate parameters: 
+use only __one__ observable sample 
+> python dai.seg.py --EM yes --EM_times one --obs_out obs.outgroup.txt --obs_neand obs.neand.txt
+
+to obtain single __par.file.0.txt__ file with parameters 
+or use   __all__ observable samples
+ 
+> python dai.seg.py --EM yes --EM_times all --obs_out obs.outgroup.txt --obs_neand obs.neand.txt
+> 
+to make estimations and obtain several __par.file.i.txt__   files with estimated parameters
+
+
+
+
 
 
 ## Step 3. Run DAI.seg HMM 
-The command line of  HMM.py is 
 
-__HMM.py --HMM_par par.file.txt --obs1 obs1.txt --obs2 obs2.txt --o output.txt__
-
+Use option --EM no to avoid using EM-algorithm.
 
 
-# Working with 1000GP (optionally)
-If you want to work with samples from 1000GP there are two convinient files panel.preparation.sh and script.eu.sh
-
-The link to download 1000GP panel is http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr${i}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz where i is in 1..22.
-
-The link to download archaic samples http://cdna.eva.mpg.de/neandertal/Vindija/VCF/ 
 
 
-__panel.preparation.sh__ is file which prepare panel (remove indelsand multiallelic snps) and glue it with 3 archaic samples. 
 
 
-__script.eu.sh__ 
+
+
+__run.daiseg.py --HMM_par par.file.txt --obs_out obs.outgroup.txt --obs_neand obs.neand.txt --o output.tracts.txt__
+
+
+
+
