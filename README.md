@@ -95,7 +95,9 @@ to make estimations and obtain several __par.file.i.txt__   files with estimated
 
 ## Step 3. Run DAI.seg HMM 
 
-Use option --EM no to avoid using EM-algorithm.
+Use option __--EM no__ to avoid using EM-algorithm and using only one common parameters file
+
+> python dai.seg.py  --EM no --HMM_par par.file.txt --obs_out obs.outgroup.txt --obs_neand obs.neand.txt --o output.tracts.txt__
 
 
 
@@ -104,7 +106,10 @@ Use option --EM no to avoid using EM-algorithm.
 
 
 
-__run.daiseg.py --HMM_par par.file.txt --obs_out obs.outgroup.txt --obs_neand obs.neand.txt --o output.tracts.txt__
+
+
+
+
 
 
 
