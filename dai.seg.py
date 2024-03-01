@@ -7,8 +7,6 @@ parser = argparse.ArgumentParser(description='DAIseg')
 
 parser.add_argument('--EM', type=str, help='Whether or not to use EM algorithm')
 parser.add_argument('--EM_times', type=str, help='Do EM for one or all samples? One or all') 
-parser.add_argument('--obs_out', type= str, help='File with observations with respect to Outgroup')
-parser.add_argument('--obs_neand', type= str, help='File with observations with respect to Archaic')
 parser.add_argument('--HMM_par', type= str, help='File with parameters')
 parser.add_argument('--o', type= str, help = 'Name of output file' )
 
@@ -37,7 +35,7 @@ GEN_time=29
 N = 2 # number of hidden states
 
 seq1, seq2 = [], []
-with open(args.obs_out, 'r') as f1, open(args.obs_neand, 'r') as f2:
+with open('obs.outgroup.txt', 'r') as f1, open('obs.neand.txt', 'r') as f2:
     for line1, line2 in zip(f1, f2):
         row = line1.replace('\n','').split(' ')
         row = [int(i) for i in row]

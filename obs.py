@@ -36,7 +36,7 @@ with open(f_obs,'r') as f:
         for j in range(len(lines[i])):
             lines[i][j]=int(lines[i][j])
 lines = np.array(lines)  
- 
+
     
     
    
@@ -63,6 +63,7 @@ lines_neand = np.array(lines_neand)
 
 
 start, end = lines_yri[0,0], lines_yri[-1,0]
+
 n_eu = len(lines[0])
 #n_eu=3
 SEQ=[]

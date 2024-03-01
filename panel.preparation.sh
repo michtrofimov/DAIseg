@@ -7,10 +7,9 @@
 
 
 CHR=22
-DIR1000=/media/anya/T7/Work/data/1000GP/${CHR} #direction to 1000GP files
 DIR=CHR${CHR}
-NAME1000=ALL.chr${CHR}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz #name of the 1000GP vcf files
-CURRENTDIR=/media/anya/T7/Work/eu
+NAME1000=/media/anya/T7/DAIseg-main/ALL.chr${CHR}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz #name of the 1000GP vcf files
+CURRENTDIR=/media/anya/T7/DAIseg-main
 
 panelfinal=all.chr${CHR}.vcf.gz
 result0=1000GP.chr${CHR}final.vcf.gz
@@ -26,11 +25,11 @@ cat outgroup.txt obs.samples.txt> samples.for.hmm.txt
 
 
 
-bcftools query -f '%POS\n' ${DIR1000}/${NAME1000}|sort|uniq -cd   > dublicated.snps.txt
+bcftools query -f '%POS\n' ${NAME1000}|sort|uniq -cd   > dublicated.snps.txt
 sed -i 's/^ *//' dublicated.snps.txt
 sed -i 's/.* //' dublicated.snps.txt 
 sed -i -e 's/^/22\t/' dublicated.snps.txt 
-bcftools view -v snps -T ^dublicated.snps.txt -S ${CURRENTDIR}/samples.for.hmm.txt  ${DIR1000}/${NAME1000} -o ${temporary}
+bcftools view -v snps -T ^dublicated.snps.txt -S ${CURRENTDIR}/samples.for.hmm.txt  ${NAME1000} -o ${temporary}
 tabix -p vcf ${temporary}
 echo "removed dublicated snps and extract reference and observable samples"
 
@@ -42,18 +41,18 @@ rm dublicated.snps.txt
 
 
 
-DIRNEAND=/media/anya/T7/Work/data/neand
-n1=33.19
-n2=altai
-n3=denisovan
+n1=/media/anya/T7/DAIseg-main/33.19/chr${CHR}_mq25_mapab100.vcf.gz
+n2=/media/anya/T7/DAIseg-main/altai/chr${CHR}_mq25_mapab100.vcf.gz
+n3=/media/anya/T7/DAIseg-main/denisovan/chr${CHR}_mq25_mapab100.vcf.gz
+
 nameneand=chr${CHR}_mq25_mapab100.vcf.gz
-bcftools view -T positions.chr${CHR}.txt ${DIRNEAND}/${n1}/${nameneand} -o filtered.snps.chr${CHR}.${n1}.vcf.gz
-bcftools view -T positions.chr${CHR}.txt ${DIRNEAND}/${n2}/${nameneand} -o filtered.snps.chr${CHR}.${n2}.vcf.gz
-bcftools view -T positions.chr${CHR}.txt ${DIRNEAND}/${n3}/${nameneand} -o filtered.snps.chr${CHR}.${n3}.vcf.gz
-tabix -p vcf filtered.snps.chr${CHR}.${n1}.vcf.gz
-tabix -p vcf filtered.snps.chr${CHR}.${n2}.vcf.gz
-tabix -p vcf filtered.snps.chr${CHR}.${n3}.vcf.gz
-bcftools merge filtered.snps.chr${CHR}.${n1}.vcf.gz filtered.snps.chr${CHR}.${n2}.vcf.gz filtered.snps.chr${CHR}.${n3}.vcf.gz -o merged.chr${CHR}.ancient.vcf.gz
+bcftools view -T positions.chr${CHR}.txt ${n1} -o filtered.snps.chr${CHR}.1.vcf.gz
+bcftools view -T positions.chr${CHR}.txt ${n2} -o filtered.snps.chr${CHR}.2.vcf.gz
+bcftools view -T positions.chr${CHR}.txt ${n3} -o filtered.snps.chr${CHR}.3.vcf.gz
+tabix -p vcf filtered.snps.chr${CHR}.1.vcf.gz
+tabix -p vcf filtered.snps.chr${CHR}.2.vcf.gz
+tabix -p vcf filtered.snps.chr${CHR}.3.vcf.gz
+bcftools merge filtered.snps.chr${CHR}.1.vcf.gz filtered.snps.chr${CHR}.2.vcf.gz filtered.snps.chr${CHR}.3.vcf.gz -o merged.chr${CHR}.ancient.vcf.gz
 tabix -p vcf merged.chr${CHR}.ancient.vcf.gz
 rm filtered.snps.*
 
