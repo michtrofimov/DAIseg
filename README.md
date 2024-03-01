@@ -1,12 +1,14 @@
 # DAIseg
-DAIseg method is created to detect ancient introssed segments using unadmixed outgroup population and several reference archaic genomes.
+DAIseg method is created to detect ancient introssed segments using unadmixed outgroup population and several reference archaic genomes. 
+
+__Input__: .vcf.gz{.tbi} file where merging all Neanderthal, Outgroupand  ingroup observable samples together and three .txt files with ids of each group.
+__Output__: .txt file where each line corresponds to the array of tracts with modern and archaic ancestries.
 
 
 # Pipeline briefly
-0. (optionally) Run __panel.preparation.sh__ to glue 1000GP and neanderthal samples
-1. Run __./script.eu.sh__ to make observation files
-2. (optionally) Make estimations of coalescent times lambda_arch, lambda_split, lambda_intr
-3. Run DAI.seg to obtain archaic tracts of samples from  __observations.txt__
+0. (optionally) Run __panel.preparation.sh__ with samples' name files to merge 1000GP, neanderthal samples and obtain .vcf.gz file.
+1. Using .vcf.gz{.tbi} and files with samples's names to run __./script.eu.sh__ to make observation files.
+3. Run __dai.seg.py__ to obtain archaic tracts of samples from  __observations.txt__ with using or no-using  EM algorithm.
 
 
 
@@ -17,6 +19,7 @@ NA18484
 NA18489
 GM19129
 ```
+
 
 *  __par.file.txt__
 ```note
@@ -29,7 +32,9 @@ lambda_split    #the mean value of derived alleles in a window of size L accumul
 lambda_intr    #the mean value of derived alleles in a window of size L accumulated during time t_intr and mutation rate μ 
 0.025    #admixture proportion of archaic introgression
 ```
+
 *  __all.chr22.vcf.gz{.tbi}__ files where  all reference genomes(Outgroup and Archaic) and observable samples simultaneously with snps only (excluding indels, deletions etc.) is in it. The main reason of it is to avoid inconsistencies.
+  
 *  __obs.outgroup/neand.txt__ is 
 ```note
 0 0 0 0 
@@ -38,31 +43,38 @@ lambda_intr    #the mean value of derived alleles in a window of size L accumula
 ```
 Here is the example of four  observations sequences (one for  each column) with respect to one fixed reference populations. Each row corresponds to the number of variants obtained in the window of size L=1000.
 
+* __output.txt__ is a  file 
+```note
+[[[t_1,t_2], [t_3,t_4], [t_5,t_6]], [[t_2+1, t_3-1], [t_4+1, t_5-1]]]
+[[[t'_1,t'_2], [t'_3,t'_4], [t'_5,t'_6]], [[t'_2+1, t'_3-1], [t'_4+1, t'_5-1]]]
+```
+where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 
 
 
 
+## Step 0. Merging 1000GP  and Archaic genomes
+The link to download 1000GP panel is 
+>http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
 
-## Step 0. Data preparation. Merging 1000GP  and Archaic genomes
-The link to download 1000GP panel is http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
-
-The link to download archaic samples http://cdna.eva.mpg.de/neandertal/Vindija/VCF/ 
+The link to download archaic samples 
+>http://cdna.eva.mpg.de/neandertal/Vindija/VCF/ 
 
 Make .txt files with samples's names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
 
-In the  file __panel.preparation.sh__ change names of CURRENTDIR (path to current directory), NAME1000(name of vcf file of 1000GP),  DIRNEAND(directory with neanderthal genomes) and run it. The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
+Add full path to files  of 1000GP and three neanderthals to variables __$NAME1000__ and __$n1, $n2, $n3__ in  __panel.preparation.sh__  and run it. The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
-## Step 1. Data preparation. Make observations
+## Step 1.  Make observations
 
 You need in  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
 
->__./script.eu.sh__
+>__./make.observations.sh__
 
 and to  make observation  files __obs.neand.txt__, __obs.outgroup.txt__ and file with default parameters and start-end positions __par.file.txt__
 
 
-
+##
 
 
 
