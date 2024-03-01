@@ -61,7 +61,10 @@ and  archaic samples
 
 Make .txt files with samples's names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
 
-Add full path to files  of 1000GP and three neanderthals to variables __$NAME1000__ and __$n1, $n2, $n3__ in  __panel.preparation.sh__ , change $CHR variable and run script. The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
+Add full path to files  of 1000GP and three neanderthals to variables __$NAME1000__ and __$n1, $n2, $n3__ in  __panel.preparation.sh__ , change $CHR variable and run 
+>./panel.preparation.sh
+ 
+The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
 ## Step 1.  Make observations
 
@@ -89,13 +92,14 @@ There are three main parameters in DAIseg model:
 
 where  t_arch, t_split, t_intr are COALESCENT times 
 
-__par.file.txt__ obtained on the Step 1 could be used as the initial guess for EM algorithm.
+par.file.txt obtained on the Step 1 could be used as the initial guess for EM algorithm.
 
 There are two possible options to estimate parameters: 
 use only __one__ observable sample 
 > python dai.seg.py --EM yes --EM_times one --o output.tracts.txt
 
-to obtain single __par.file.0.txt__ file with parameters 
+to obtain estimations only for one sample 
+
 or use   __--EM all__ observable samples
  
 > python dai.seg.py --EM yes --EM_times all--o output.tracts.txt
