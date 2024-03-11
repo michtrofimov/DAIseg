@@ -9,12 +9,12 @@ __Output__: .txt file where each line corresponds to the array of tracts with mo
 # Pipeline briefly
 0. (optionally) Run __panel.preparation.sh__ with samples' name files to merge 1000GP, neanderthal samples and obtain .vcf.gz file.
 1. Using .vcf.gz{.tbi} and files with samples's names to run __./script.eu.sh__ to make observation files.
-3. Run __dai.seg.py__ to obtain archaic tracts of samples from  __observations.txt__ with using or no-using  EM algorithm.
+3. Run __dai.seg.py__ to obtain archaic tracts of samples from  __observations.txt__  with the posssibility of using EM algorithm.
 
 
 
 # Files's summary
-*  __outgroup.txt__(Africa), __archaic.txt__(Neanderthals)  and __obs.samples.txt__(European),are .txt files which consist  of the samples's ids of reference Africans and Neanderthals and observable Europeans written in a column
+*  __outgroup.txt__(Africa), __archaic.txt__(Neanderthals)  and __obs.samples.txt__(European), are .txt files which consist of the samples' ids of reference Africans, Neanderthals and observable Europeans written in a column
 ```note
 NA18484
 NA18489
@@ -34,10 +34,10 @@ lambda_intr    #the mean value of derived alleles in a window of size L accumula
 0.025    #admixture proportion of archaic introgression
 ```
 
-By default, the splitting times 550.000, 70000 and 55.000 are used to make lambda_arch, lambda_split and lambda_intr on Step 1 and make initiall guess for EM algorithm on Step 2.
+By default, the splitting times 550.000, 70.000 and 55.000 are used to make lambda_arch, lambda_split and lambda_intr on Step 1 and to make initiall guess for the EM algorithm on Step 2.
 
 
-*  __all.chr22.vcf.gz{.tbi}__ files where  all reference genomes(Outgroup and Archaic) and observable samples simultaneously with snps only (excluding indels, deletions etc.) is in it. The main reason of it is to avoid inconsistencies.
+*  __all.chr22.vcf.gz{.tbi}__ files containing all reference genomes (Outgroup and Archaic) and observable samples with snps only (excluding indels, deletions etc.). The main reason of it is to avoid inconsistencies.
   
 * __output.txt__ is a  file 
 ```note
@@ -53,13 +53,13 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 
 ## Step 0. Merging 1000GP  and Archaic genomes
-Download 1000GP panel is 
+Download 1000GP panel 
 >http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
 
 and  archaic samples 
 >http://cdna.eva.mpg.de/neandertal/Vindija/VCF/ 
 
-Make .txt files with samples's names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
+Make .txt files with samples' names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
 
 Add full path to files  of 1000GP and three neanderthals to variables __$NAME1000__ and __$n1, $n2, $n3__ in  __panel.preparation.sh__ , change $CHR variable and run 
 >./panel.preparation.sh
@@ -68,11 +68,11 @@ The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
 ## Step 1.  Make observations
 
-You need in  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
+You need  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
 
 >__./make.observations.sh__
 
-and to  make observation  files __obs.neand.txt__, __obs.outgroup.txt__ and file with default parameters and start-end positions __par.file.txt__ (see the File's summary paragraph). 
+and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the file with default parameters and start-end positions __par.file.txt__ (see the File's summary paragraph). 
 
 
 
