@@ -87,10 +87,10 @@ where file par.file.txt was created on the previous Step.
 
 There are three main parameters in DAIseg model:
 1. Coalescent time of AMH and Neanderthals t_arch^c  ,
-2.  t_split^c  ,
-3. Mean value of derived alleles in a window of size L accumulated during time t_intr^c  ,
+2.  Coalescent time out of Africa t_split^c  ,
+3.  t_intr^c  ,
 5. Neanderthal admixture proportion,
-4. Mean value of recombination events in a window of size L accumulated during time t_intr.  
+4. Introgression time  t_intr.  
 
 where  t_arch^c, t_split^c, t_intr^c are COALESCENT times, and t_intr is neanderthal introgression time. 
 
