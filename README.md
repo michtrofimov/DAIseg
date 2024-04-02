@@ -86,11 +86,13 @@ where file par.file.txt was created on the previous Step.
 ## Step 2.1 Run DAI.seg using EM algorithm
 
 There are three main parameters in DAIseg model:
-1. Mean value of derived alleles in a window of size L accumulated during time t_arch  __lambda_archaic__,
-2. Mean value of derived alleles in a window of size L accumulated during time t_split  __lambda_split__,
-3. Mean value of derived alleles in a window of size L accumulated during time t_intr  __lambda_intr__
+1. Coalescent time of AMH and Neanderthals t_arch^c  ,
+2.  t_split^c  ,
+3. Mean value of derived alleles in a window of size L accumulated during time t_intr^c  ,
+5. Neanderthal admixture proportion,
+4. Mean value of recombination events in a window of size L accumulated during time t_intr.  
 
-where  t_arch, t_split, t_intr are COALESCENT times 
+where  t_arch^c, t_split^c, t_intr^c are COALESCENT times, and t_intr is neanderthal introgression time. 
 
 par.file.txt obtained on the Step 1 could be used as the initial guess for EM algorithm.
 
