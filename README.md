@@ -60,7 +60,8 @@ Download 1000GP panel
 >http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
 
 and  archaic samples 
->http://cdna.eva.mpg.de/neandertal/Vindija/VCF/ 
+>http://cdna.eva.mpg.de/neandertal/Vindija/VCF/
+>http://ftp.eva.mpg.de/neandertal/ChagyrskayaOkladnikov/
 
 Make .txt files with samples' names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
 
