@@ -5,11 +5,21 @@
 #full list of samples of ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz is in file all.samples.txt
 
 
-
+#change the following names and directories
 CHR=22
+
+NAME1000=/media/anya/T7/Work/Data/1000GP/${CHR}/ALL.chr${CHR}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz #name of the 1000GP vcf files
+n1=/media/anya/T7/Work/data/neand/33.19/chr${CHR}_mq25_mapab100.vcf.gz
+n2=/media/anya/T7/Work/data/neand/altai/chr${CHR}_mq25_mapab100.vcf.gz
+n3=/media/anya/T7/sorted.chr22.new.neand.vcf.gz
+
+
+
+
+
+
 DIR=CHR${CHR}
-NAME1000=/media/anya/T7/DAIseg-main/ALL.chr${CHR}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz #name of the 1000GP vcf files
-CURRENTDIR=/media/anya/T7/DAIseg-main
+
 
 panelfinal=all.chr${CHR}.vcf.gz
 result0=1000GP.chr${CHR}final.vcf.gz
@@ -29,7 +39,7 @@ bcftools query -f '%POS\n' ${NAME1000}|sort|uniq -cd   > dublicated.snps.txt
 sed -i 's/^ *//' dublicated.snps.txt
 sed -i 's/.* //' dublicated.snps.txt 
 sed -i -e 's/^/22\t/' dublicated.snps.txt 
-bcftools view -v snps -T ^dublicated.snps.txt -S ${CURRENTDIR}/samples.for.hmm.txt  ${NAME1000} -o ${temporary}
+bcftools view -v snps -T ^dublicated.snps.txt -S samples.for.hmm.txt  ${NAME1000} -o ${temporary}
 tabix -p vcf ${temporary}
 echo "removed dublicated snps and extract reference and observable samples"
 
@@ -41,18 +51,19 @@ rm dublicated.snps.txt
 
 
 
-n1=/media/anya/T7/DAIseg-main/33.19/chr${CHR}_mq25_mapab100.vcf.gz
-n2=/media/anya/T7/DAIseg-main/altai/chr${CHR}_mq25_mapab100.vcf.gz
-n3=/media/anya/T7/DAIseg-main/denisovan/chr${CHR}_mq25_mapab100.vcf.gz
 
-nameneand=chr${CHR}_mq25_mapab100.vcf.gz
+
+
 bcftools view -T positions.chr${CHR}.txt ${n1} -o filtered.snps.chr${CHR}.1.vcf.gz
 bcftools view -T positions.chr${CHR}.txt ${n2} -o filtered.snps.chr${CHR}.2.vcf.gz
 bcftools view -T positions.chr${CHR}.txt ${n3} -o filtered.snps.chr${CHR}.3.vcf.gz
+
+
 tabix -p vcf filtered.snps.chr${CHR}.1.vcf.gz
 tabix -p vcf filtered.snps.chr${CHR}.2.vcf.gz
 tabix -p vcf filtered.snps.chr${CHR}.3.vcf.gz
-bcftools merge filtered.snps.chr${CHR}.1.vcf.gz filtered.snps.chr${CHR}.2.vcf.gz filtered.snps.chr${CHR}.3.vcf.gz -o merged.chr${CHR}.ancient.vcf.gz
+
+bcftools merge filtered.snps.chr${CHR}.1.vcf.gz filtered.snps.chr${CHR}.2.vcf.gz filtered.snps.chr${CHR}.3.vcf.gz  -o merged.chr${CHR}.ancient.vcf.gz
 tabix -p vcf merged.chr${CHR}.ancient.vcf.gz
 rm filtered.snps.*
 

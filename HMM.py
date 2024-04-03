@@ -12,10 +12,10 @@ N=2
 def initA(cut,RR,Ti, a) -> np.array:
     A = np.zeros((2,2))
     
-    A[0][1]=2*Ti*RR*cut*a
+    A[0][1]=Ti*RR*cut*a
     A[0][0]=1-A[0][1]
  
-    A[1][0]=2*Ti*RR*cut*(1-a)
+    A[1][0]=Ti*RR*cut*(1-a)
     A[1][1]=1-A[1][0]
     
     return A
