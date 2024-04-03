@@ -88,20 +88,11 @@ where file par.file.txt was created on the previous Step.
 
 ## Step 2.1 Run DAI.seg using EM algorithm
 
-There are three main parameters in DAIseg model:
-1. Coalescent time of AMH and Neanderthals t_arch^c  ,
-2.  Coalescent time out of Africa t_split^c  ,
-3.  t_intr^c  ,
-5. Neanderthal admixture proportion,
-4. Introgression time  t_intr.  
-
-where  t_arch^c, t_split^c, t_intr^c are COALESCENT times, and t_intr is neanderthal introgression time. 
-
 par.file.txt obtained on the Step 1 could be used as the initial guess for EM algorithm.
 
 There are two possible options to estimate parameters: 
-use only __one__ observable sample 
-> python dai.seg.py --EM yes --EM_est --HMM_par par.file.txt --o output.tracts.txt
+use __--EM_est coal__
+> python dai.seg.py --EM yes --EM_est coal --HMM_par par.file.txt --o output.tracts.txt
 
 to obtain estimations only for coalescent times 
 
