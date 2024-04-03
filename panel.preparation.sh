@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-#we download 1000GP and 3 ancient genomes to the folders 1000GP, neand/altai, neand/33.19, neand/denisovan
+#we download 1000GP and 3 ancient genomes to the folders 1000GP, neand/altai, neand/33.19, 
 #full list of samples of ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz is in file all.samples.txt
 
 
