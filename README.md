@@ -101,12 +101,12 @@ par.file.txt obtained on the Step 1 could be used as the initial guess for EM al
 
 There are two possible options to estimate parameters: 
 use only __one__ observable sample 
-> python dai.seg.py --EM yes --EM_times one --HMM_par par.file.txt --o output.tracts.txt
+> python dai.seg.py --EM yes --EM_est --HMM_par par.file.txt --o output.tracts.txt
 
-to obtain estimations only for one sample 
+to obtain estimations only for coalescent times 
 
-or use   __--EM all__ observable samples
+or use   __--EM_est all__ observable samples
  
-> python dai.seg.py --EM yes --EM_times all --HMM_par par.file.txt --o output.tracts.txt
+> python dai.seg.py --EM yes --EM_est all --HMM_par par.file.txt --o output.tracts.txt
 
-to make estimations of coalescent times for all samples.
+to make estimations of coalescent times, split times and admixture proportion.
