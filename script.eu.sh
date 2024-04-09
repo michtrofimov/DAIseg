@@ -32,7 +32,7 @@ rm $i.positions.*
 done
 
 
-bcftools query -S obs.sampes.txt  -f '[%GT ]\n'  ${panelfinal} |sed  's/|/ /g' >  obs.chr${CHR}.ingroup.txt
+bcftools query -S obs.samples.txt  -f '[%GT ]\n'  ${panelfinal} |sed  's/|/ /g' >  obs.chr${CHR}.ingroup.txt
 rm samples.*
 
 python obs.py 
