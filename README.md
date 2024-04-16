@@ -1,6 +1,6 @@
 
 # DAIseg
-DAIseg method is created to detect ancient introssed segments using unadmixed outgroup population and several reference archaic genomes. 
+DAIseg method is created to detect ancient introgressed segments using unadmixed outgroup population and several reference archaic genomes. 
 
 __Input__: .vcf.gz{.tbi} file where merging all Neanderthal, Outgroupand  ingroup observable samples together and three .txt files with ids of each group.
 
