@@ -124,8 +124,7 @@ if args.EM=='no':
 
         
 if args.EM=='yes': 
-#    for idx in range(0, len(seq)): 
-    for idx in range(0, 2):  
+    for idx in range(0, len(seq)):
         if args.EM_est == 'coal':
             
             Lambda_opt = EM_function3(SEQ[0:2], Lambda_0)
