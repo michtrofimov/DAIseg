@@ -8,8 +8,8 @@ __Output__: .txt file where each line corresponds to the array of tracts with mo
 
 
 # Pipeline briefly
-0. (optionally) Run __panel.preparation.Linux.sh__(or __panel.preparation.MacOS.sh__) with samples' name files to merge 1000GP, neanderthal samples and obtain .vcf.gz file.
-1. Using .vcf.gz{.tbi} and files with samples's names to run __./make.obs.sh__ to make observation files.
+0. (optionally) Run __panel.preparation.Linux.sh obs.samples.txt outgroup.txt__(or __panel.preparation.MacOS.sh__) with samples' name files to merge 1000GP, neanderthal samples and obtain .vcf.gz file.
+1. Using .vcf.gz{.tbi} and files with samples's names to run __./make.obs.sh outgroup.txt archaic.txt obs.samples.txt__ to make observation files.
 3. Run __dai.seg.py__ to obtain archaic tracts of samples from  __observations.txt__  with the posssibility of using EM algorithm.
 
 
@@ -75,7 +75,7 @@ The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
 You need  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
 
->__./make.obs.sh__
+>__./make.obs.sh outgroup.txt archaic.txt obs.samples.txt__ 
 
 and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the file with default parameters and start-end positions __par.file.txt__ (see the File's summary paragraph). 
 
