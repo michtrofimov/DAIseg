@@ -1,8 +1,11 @@
 import numpy as np
+import sys
 
-f_neand = "chr22.archaic.reference.txt"
-f_obs = "obs.chr22.ingroup.txt"
-f_yri = "chr22.outgroup.reference.txt"
+
+f_obs = sys.argv[3]
+f_yri = sys.argv[1]
+f_neand = sys.argv[2]
+
 
 
 def make_obs(lines, lines_ref, L, ind):
