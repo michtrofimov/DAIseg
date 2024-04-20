@@ -35,7 +35,7 @@ done
 bcftools query -S obs.samples.txt  -f '[%GT ]\n'  ${panelfinal} |sed  's/|/ /g' >  obs.chr${CHR}.ingroup.txt
 rm samples.*
 
-python obs.py 
+python3 obs.py 
 
 for i in 'outgroup' 'archaic'
 do
