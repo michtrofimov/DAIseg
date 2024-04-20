@@ -61,12 +61,13 @@ Download 1000GP panel
 
 and  archaic samples 
 >http://cdna.eva.mpg.de/neandertal/Vindija/VCF/
->http://ftp.eva.mpg.de/neandertal/ChagyrskayaOkladnikov/
+>http://ftp.eva.mpg.de/neandertal/ChagyrskayaOkladnikov/ (split by chromosomes!)
 
 Make .txt files with samples' names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
 
 Add full path to files  of 1000GP and three neanderthals to variables __$NAME1000__ and __$n1, $n2, $n3__ in  __panel.preparation.sh__ , change $CHR variable and run 
->./panel.preparation.sh
+>./panel.preparation.Linux.sh (for OS Linux) or
+>./panel.preparation.MacOS.sh
  
 The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
@@ -74,7 +75,7 @@ The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
 You need  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
 
->__./script.eu.sh__
+>__./make.obs.sh__
 
 and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the file with default parameters and start-end positions __par.file.txt__ (see the File's summary paragraph). 
 
@@ -83,7 +84,7 @@ and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the fi
 
 
 ## Step 2.1 Run DAI.seg without EM algorithm
->  python dai.seg2.py  --EM no --HMM_par par.file2.txt  --o output.tracts.txt
+>  python dai.seg.py  --EM no --HMM_par par.file.txt  --o output.tracts.txt
 
 where file par.file.txt was created on the previous Step. 
 
@@ -93,12 +94,12 @@ par.file.txt obtained on the Step 1 could be used as the initial guess for EM al
 
 There are two possible options to estimate parameters: 
 use __--EM_est coal__
-> python dai.seg2.py --EM yes --EM_est coal --HMM_par par.file2.txt --o output.tracts.txt
+> python dai.seg.py --EM yes --EM_est coal --HMM_par par.file.txt --o output.tracts.txt
 
 to obtain estimations only for coalescent times 
 
 or use   __--EM_est all__ observable samples
  
-> python dai.seg2.py --EM yes --EM_est all --HMM_par par.file2.txt --o output.tracts.txt
+> python dai.seg.py --EM yes --EM_est all --HMM_par par.file.txt --o output.tracts.txt
 
 to make estimations of coalescent times, split times and admixture proportion.
