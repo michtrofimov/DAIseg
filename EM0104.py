@@ -225,7 +225,7 @@ def EM_algorithm2(p,o, n_states, mu, rr, lambda_0, epsilon, cut ):
         if LNG.norm(lmbd_new-lmbd) < epsilon:
             break
         lmbd = lmbd_new
-        print(lmbd)
+        
 
 #    print('Число шагов в EM -алгоритме', em_steps )
     return lmbd_new
