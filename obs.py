@@ -81,9 +81,9 @@ with open('par.file.txt', "w") as file_pos:
     file_pos.write(str(1e-8)+'\n')
     file_pos.write(str(1000)+'\n')
     file_pos.write(str(lines_yri[0,0])+' ' +str(lines_yri[-1,0])+'\n')
-    file_pos.write(str( 550000 * L/29)+'\n')
-    file_pos.write(str( 70000 * L/29)+'\n')
-    file_pos.write(str( 55000 * L/29)+'\n')
+    file_pos.write(str( 550000)+'\n')
+    file_pos.write(str( 70000 )+'\n')
+    file_pos.write(str( 55000)+'\n')
     file_pos.write(str(0.025))
         
 
