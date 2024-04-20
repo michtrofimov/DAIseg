@@ -60,7 +60,6 @@ seq2 = np.transpose(seq2)
 n1=seq1.max()
 n2=seq2.max()
 
-print(n1,n2)
 
 seq=[]
 for i in range(len(seq1)):
