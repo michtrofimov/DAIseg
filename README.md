@@ -84,7 +84,7 @@ and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the fi
 
 
 ## Step 2.1 Run DAI.seg without EM algorithm
->  python dai.seg.py  --EM no --HMM_par par.file.txt  --o output.tracts.txt
+>  python3 dai.seg.py  --EM no --HMM_par par.file.txt  --o output.tracts.txt
 
 where file par.file.txt was created on the previous Step. 
 
@@ -94,12 +94,12 @@ par.file.txt obtained on the Step 1 could be used as the initial guess for EM al
 
 There are two possible options to estimate parameters: 
 use __--EM_est coal__
-> python dai.seg.py --EM yes --EM_est coal --HMM_par par.file.txt --o output.tracts.txt
+> python3 dai.seg.py --EM yes --EM_est coal --HMM_par par.file.txt --o output.tracts.txt
 
 to obtain estimations only for coalescent times 
 
 or use   __--EM_est all__ observable samples
  
-> python dai.seg.py --EM yes --EM_est all --HMM_par par.file.txt --o output.tracts.txt
+> python3 dai.seg.py --EM yes --EM_est all --HMM_par par.file.txt --o output.tracts.txt
 
 to make estimations of coalescent times, split times and admixture proportion.
