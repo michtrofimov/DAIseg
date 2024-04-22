@@ -66,7 +66,10 @@ and  archaic samples
 Make .txt files with samples' names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
 
 Add full path to files  of 1000GP and three neanderthals to variables __$NAME1000__ and __$n1, $n2, $n3__ in  __panel.preparation.sh__ , change $CHR variable and run 
-> ./panel.preparation.Linux.sh obs.samples.txt outgroup.txt__ (for OS Linux) or
+> ./panel.preparation.Linux.sh obs.samples.txt outgroup.txt__ (for OS Linux)
+
+or
+
 > ./panel.preparation.MacOS.sh obs.samples.txt outgroup.txt__
  
 The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
