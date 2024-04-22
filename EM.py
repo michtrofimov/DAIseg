@@ -279,7 +279,7 @@ def EM_algorithm3(p,o, n_states, mu, rr, lambda_0, epsilon, cut ):
         if LNG.norm(lmbd_new-lmbd) < epsilon:
             break
         lmbd = lmbd_new
-        print(lmbd_new)
+
 
         
 #    print('Число шагов в EM -алгоритме', em_steps )
