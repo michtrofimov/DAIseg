@@ -31,7 +31,7 @@ temporary=temp.panel.chr${CHR}.vcf.gz
 # list of  Europeans,  Africans are in files  ibs.txt,  yri.txt. Check that this samples are in 1000GP, if no let make the intersections. 
 #grep -Fxf all.samples.txt obs.txt  > intersection.obs.txt
 #grep -Fxf all.samples.txt outgroup.txt  > intersection.outgroup.txt
-cat outgroup.txt obs.samples.txt> samples.for.hmm.txt
+cat $2 $1> samples.for.hmm.txt
 #rm all.samples.txt
 
 
