@@ -55,7 +55,7 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 
 
-## Step 0. Merging 1000GP  and Archaic genomes
+## Step 0. Merging 1000GP  and Archaic genomes (~4 min)
 Download 1000GP panel 
 >http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
 
