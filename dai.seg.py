@@ -123,16 +123,16 @@ if args.EM=='no':
 
         
 if args.EM=='yes': 
-    for idx in range(0, len(seq)):
-        if args.EM_est == 'coal':
+    
+    if args.EM_est == 'coal':
             
-            Lambda_opt = EM_function3(SEQ, Lambda_0)
+        Lambda_opt = EM_function3(SEQ, Lambda_0)
 
         
-        if args.EM_est == 'all':
-            Lambda_opt = EM_function2(SEQ, Lambda_0)
+    if args.EM_est == 'all':
+        Lambda_opt = EM_function2(SEQ, Lambda_0)
     
-    
+    for idx in range(0, len(seq)):
      
         tracts_HMM_result.append(run_daiseg(Lambda_opt, SEQ, N_st, idx)) 
         
