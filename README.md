@@ -74,7 +74,7 @@ or
  
 The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
-## Step 1.  Make observations
+## Step 1.  Make observations (~ 3 min for two samples)
 
 You need  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
 
