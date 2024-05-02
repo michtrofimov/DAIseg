@@ -39,7 +39,7 @@ cat $2 $1 > samples.for.hmm.txt
 bcftools query -f '%POS\n' ${NAME1000}|sort|uniq -cd   > dublicated.snps.txt
 sed -i 's/^ *//' dublicated.snps.txt
 sed -i 's/.* //' dublicated.snps.txt 
-sed -i -e 's/^/22\t/' dublicated.snps.txt 
+sed -i -e 's/^/${CHR}\t/' dublicated.snps.txt 
 
 
 bcftools view -v snps -T ^dublicated.snps.txt -S samples.for.hmm.txt  ${NAME1000} -Oz -o ${temporary}
