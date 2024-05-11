@@ -5,17 +5,23 @@
 #full list of samples of ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz is in file all.samples.txt
 
 
+
 #change the following names and directories
-CHR=22
-pref=scglab
-
-NAME1000=/media/${pref}/T7/Work/Data/1000GP/${CHR}/ALL.chr${CHR}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz #name of the 1000GP vcf files
-n1=/media/${pref}/T7/Work/data/neand/33.19/chr${CHR}_mq25_mapab100.vcf.gz
-n2=/media/${pref}/T7/Work/data/neand/altai/chr${CHR}_mq25_mapab100.vcf.gz
-n3=/media/${pref}/T7/sorted.chr22.new.neand.vcf.gz
+comp=scglab
 
 
+CHR=$1
+mex=$2
+eu=$3
+na=$4
+af=$5
+arch=$6
 
+#change the following names and directories
+NAME1000=/media/${comp}/T7/Work/Data/1000GP/${CHR}/ALL.chr${CHR}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz #name of the 1000GP vcf files
+n1=/media/${comp}/T7/Work/data/neand/33.19/chr${CHR}_mq25_mapab100.vcf.gz
+n2=/media/${comp}/T7/Work/data/neand/altai/chr${CHR}_mq25_mapab100.vcf.gz
+n3=/media/${comp}/T7/sorted.chr22.new.neand.vcf.gz
 
 
 
@@ -27,21 +33,16 @@ result0=1000GP.chr${CHR}final.vcf.gz
 temporary=temp.panel.chr${CHR}.vcf.gz
 
 
-#bcftools query -l ${DIR1000}/${NAME1000} > all.samples.txt # make list of all samples
-# list of  Europeans,  Africans are in files  ibs.txt,  yri.txt. Check that this samples are in 1000GP, if no let make the intersections. 
-#grep -Fxf all.samples.txt obs.txt  > intersection.obs.txt
-#grep -Fxf all.samples.txt outgroup.txt  > intersection.outgroup.txt
-cat $2 $1> samples.for.hmm.txt
-#rm all.samples.txt
+
+cat ${mex} ${eu} ${na} ${af} > samples.for.hmm.txt
+
 
 
 
 bcftools query -f '%POS\n' ${NAME1000}|sort|uniq -cd   > dublicated.snps.txt
-# sed -i 's/^ *//' dublicated.snps.txt
-# sed -i 's/.* //' dublicated.snps.txt 
 cut -d " " -f5 dublicated.snps.txt > dublicated.cut.snps.txt
 sed -i -e 's/^/${CHR}\t/' dublicated.cut.snps.txt 
-bcftools view -v snps -T ^dublicated.cut.snps.txt  -S samples.for.hmm.txt  ${NAME1000} -Oz -o ${temporary}
+bcftools view -v snps -T ^dublicated.cut.snps.txt -S samples.for.hmm.txt  ${NAME1000} -Oz -o ${temporary}
 tabix -p vcf ${temporary}
 echo "removed dublicated snps and extract reference and observable samples"
 
@@ -50,6 +51,7 @@ bcftools query -f '%CHROM\t%POS\n' ${temporary} > positions.chr${CHR}.txt
 
 rm dublicated.snps.txt
 rm dublicated.cut.snps.txt
+
 
 
 
