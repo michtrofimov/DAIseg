@@ -50,10 +50,22 @@ By default, the  time values are  550.000, 70.000, 55.000, 55.000 are used to ma
 ```
 where each two lines correspond to the one diploid sample from obs.samples.txt.
 
-*  __position.txt__ first-last positions of desired region
+*  __pos.chr22.txt__ first-last positions of desired region
  ```note
  start_chr end_chr
  ```
+
+
+
+
+* __ancestral.alleles.file.txt__  file with information about ancestral allels ("-1"=="no information").
+  ```note
+  position1 -1
+  position2 A
+  position3 C
+  ...
+  ```
+  The link on the ancestral alles files based on hg19 is https://drive.google.com/file/d/1Vw-QEG9uu1trkbGHpDVXhMlbGt-RQhbN/view?usp=sharing
 
 
 
