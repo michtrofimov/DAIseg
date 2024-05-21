@@ -1,14 +1,18 @@
 import numpy as np
 import sys
+import useful as usfl
+
+CHR=sys.argv[1]
+
+f_yri = sys.argv[2]
+f_neand = sys.argv[3]
+f_obs = sys.argv[4]
+f_aa = sys.argv[5]
 
 
-f_obs = sys.argv[3]
-f_yri = sys.argv[1]
-f_neand = sys.argv[2]
 
-
-
-def make_obs(lines, lines_ref, L, ind):
+ 
+def make_obs(lines, lines_ref, L, ind,dc):
 
     start, end = lines_ref[0,0], lines_ref[-1,0]
     if float(end-start) % L != 0:
@@ -20,13 +24,26 @@ def make_obs(lines, lines_ref, L, ind):
     for i in range(len(lines)):
         j=int((lines_ref[i][0]-start)/L)
 
-        if obs[i]==0:
+        if obs[i]==0 and dc[lines_ref[i][0]]!=obs[i]:
             if lines_ref[i][1]==-1:
                 obs_ref[j]+=1
-        if obs[i]==1:
+                
+        if obs[i]==1 and dc[lines_ref[i][0]]!=obs[i]:
             if lines_ref[i][2]==-1:
                 obs_ref[j]+=1
-    return obs_ref
+                
+    return obs_ref   
+    
+    
+with open(f_aa,'r') as f:
+    l=f.readlines()
+ 
+dct={}
+for  i in l:
+    
+    m=i.replace(',','').replace('[','').replace(']','').replace('\n','').split(' ')
+
+    dct[int(m[0])]=int(m[1])
 
 
 with open(f_obs,'r') as f:
@@ -73,26 +90,13 @@ SEQ=[]
 N_ST=[]
 L=1000
 
-MU=1.25e-8
-RR=1e-8
 
 
 
-with open('par.file.txt', "w") as file_pos:
-    file_pos.write(str(29)+'\n')
-    file_pos.write(str(1.25e-8)+'\n')
-    file_pos.write(str(1e-8)+'\n')
-    file_pos.write(str(1000)+'\n')
-    file_pos.write(str(lines_yri[0,0])+' ' +str(lines_yri[-1,0])+'\n')
-    file_pos.write(str( 550000)+'\n')
-    file_pos.write(str( 70000 )+'\n')
-    file_pos.write(str( 55000)+'\n')
-    file_pos.write(str( 55000)+'\n')
-    file_pos.write(str(0.025))
         
 
 for ind in range(n_eu):
-    sq=np.vstack([make_obs(lines, lines_yri, L, ind ),make_obs(lines, lines_neand, L, ind)])
+    sq=np.vstack([make_obs(lines, lines_yri, L, ind, dct ),make_obs(lines, lines_neand, L, ind, dct)])
     sq=sq.transpose()
     n_st = sq.max()+1
     SEQ.append(sq)
@@ -100,7 +104,8 @@ for ind in range(n_eu):
 SEQ=np.array(SEQ)
 
 
-
+with open('pos.chr'+str(CHR)+'.txt','w') as f:
+    f.write(str(lines_yri[0,0])+' ' +str(lines_yri[-1,0])+'\n')
 
 
 with open('obs.outgroup.txt', "w") as file1,  open('obs.neand.txt', "w") as file2:
