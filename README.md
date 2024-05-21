@@ -29,7 +29,6 @@ GM19129
 1.25e-08    #mutation rate μ
 1e-08    #recombination rate
 1000    #window size
-start end    #position of the first SNP in .vcf file
 t_arch^c    #Coalescent time of AMH and Neanderthals
 t_split^c    #Coalescent time out of Africa 
 t_intr^c    #coalescent time of archaic segments in modern genome with neanderthal samples
@@ -44,14 +43,17 @@ By default, the  time values are  550.000, 70.000, 55.000, 55.000 are used to ma
   
 * __output.txt__ is a  file 
 ```note
-[[[t_1,t_2], [t_3,t_4], [t_5,t_6]], [[t_2+1, t_3-1], [t_4+1, t_5-1]]]
-[[[t'_1,t'_2], [t'_3,t'_4], [t'_5,t'_6]], [[t'_2+1, t'_3-1], [t'_4+1, t'_5-1]]]
+[[t_1,t_2], [t_3,t_4], [t_5,t_6]]
+[[t'_1,t'_2], [t'_3,t'_4], [t'_5,t'_6]]
 ...
 ...
 ```
 where each two lines correspond to the one diploid sample from obs.samples.txt.
 
-
+*  __position.txt__ first-last positions of desired region
+ ```note
+ start_chr end_chr
+ ```
 
 
 
