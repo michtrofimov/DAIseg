@@ -101,7 +101,7 @@ and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the fi
 
 
 ## Step 2.1 Run DAI.seg without EM algorithm
->  python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by,pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
+>  python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
 
 
 where  par.file.txt is in main directory
