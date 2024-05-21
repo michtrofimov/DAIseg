@@ -70,7 +70,7 @@ Add full path to files  of 1000GP and three neanderthals to variables __$NAME100
 
 or
 
-> ./panel.preparation.MacOS.sh obs.samples.txt outgroup.txt__
+> ./panel.preparation.MacOS.sh 22 obs.samples.txt outgroup.txt__
  
 The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
@@ -78,7 +78,7 @@ The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
 You need  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
 
->./make.obs.sh outgroup.txt archaic.txt obs.samples.txt
+>./make.obs.sh 22 all.chr22.vcf.gz obs.samples.txt outgroup.txt archaic.txt ancestral.alleles.txt
 
 and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the file with default parameters and start-end positions __par.file.txt__ (see the File's summary paragraph). 
 
