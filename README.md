@@ -4,7 +4,7 @@ DAIseg method is created to detect ancient introgressed segments using unadmixed
 
 __Input__: .vcf.gz{.tbi} file where merging all Neanderthal, Outgroupand  ingroup observable samples together and three .txt files with ids of each group.
 
-__Output__: .txt file where each line corresponds to the array of tracts with modern and archaic ancestries.
+__Output__: .txt file where each line corresponds to the array of tracts with archaic ancestries.
 
 
 # Pipeline briefly
