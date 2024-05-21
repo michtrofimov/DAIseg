@@ -80,7 +80,7 @@ The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
 
 You need  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
 
->./make.obs.sh 22 all.chr22.vcf.gz obs.samples.txt outgroup.txt archaic.txt ancestral.alleles.txt
+>./make.obs.sh 22 all.chr22.vcf.gz obs.samples.txt Outgroup.txt archaic.txt  POS.AA.chr22.txt
 
 and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the file with default parameters and start-end positions __par.file.txt__ (see the File's summary paragraph). 
 
@@ -89,22 +89,19 @@ and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the fi
 
 
 ## Step 2.1 Run DAI.seg without EM algorithm
->  python3 dai.seg.py  --EM no --HMM_par par.file.txt  --o output.tracts.txt
+>  python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by,pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
 
-where file par.file.txt was created on the previous Step. 
 
+where  par.file.txt is in main directory
 ## Step 2.1 Run DAI.seg using EM algorithm
 
 par.file.txt obtained on the Step 1 could be used as the initial guess for EM algorithm.
 
-There are two possible options to estimate parameters: 
-use __--EM_est coal__
-> python3 dai.seg.py --EM yes --EM_est coal --HMM_par par.file.txt --o output.tracts.txt
 
-to obtain estimations only for coalescent times 
+use
+> python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr.22.txt --HMM_par par.file.txt --EM yes --EM_steps 5 --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
 
-or use   __--EM_est all__ observable samples
- 
-> python3 dai.seg.py --EM yes --EM_est all --HMM_par par.file.txt --o output.tracts.txt
 
-to make estimations of coalescent times, split times and admixture proportion.
+to obtain estimations of the  coalescent times and run DAIseg.
+
+
