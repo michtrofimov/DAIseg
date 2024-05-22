@@ -96,7 +96,7 @@ where the examples par.file.txt, pos.chr22.txt, POS.AA.chr22.txt could be found 
 ## Run DAI.seg using EM algorithm
 
 ```bash
-python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.chr22.txt --obs_archaic obs.archaic.chr22.txt --o out.chr22.txt
+python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr.22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.chr22.txt --obs_archaic obs.archaic.chr22.txt --o out.chr22.txt
 ```
 to obtain estimations of the  coalescent times and run DAIseg. Here par.file.txt is used as the initial guess for EM algorithm.
 
