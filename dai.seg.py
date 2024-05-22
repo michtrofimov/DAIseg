@@ -95,12 +95,21 @@ if args.gaps is not None:
 
     len_mas=[]
     for i in range(len(domain)):
-        seq_start_mas.append(domain[i][0])
-        seq_end_mas.append(domain[i][1])
-        len_mas.append(int((domain[i][1]-domain[i][0]+1)/1000))
+        if (domain[i][0] // L)*L + (domain[0][0]% L) >= domain[i][0]:
+            seq_start_mas.append((domain[i][0] // L)*L + (domain[0][0]% L))
+        else:
+            seq_start_mas.append((domain[i][0] // L)*L + (domain[0][0]% L)+L)
+        if (domain[i][1]//L)*L-1+(domain[0][0]% L) <= domain[i][1]:
+            seq_end_mas.append((domain[i][1]//L)*L-1+(domain[0][0]% L))
+        else:
+            seq_end_mas.append((domain[i][1]//L)*L-1+(domain[0][0]% L)-L)        
+        
+        len_mas.append(int((domain[i][1]-domain[i][0])/1000))
 
         if i!=len(domain)-1:
-            gaps_numbers.append([int((domain[i][1]-domain[0][0])/1000)+1,int((domain[i+1][0]-domain[0][0])/1000)-1] )
+            gaps_numbers.append([int((domain[i][1]-domain[0][0])/1000),int((domain[i+1][0]-domain[0][0])/1000)] )
+
+    domain=[[seq_start_mas[i], seq_end_mas[i]] for i in range(len(domain))]
 
 
 
@@ -111,7 +120,7 @@ if args.gaps is not None:
     for i in range(len(len_mas)):
         p1=int((seq_start_mas[i]-seq_start_mas[0])/1000)
         p2=int((seq_end_mas[i]-seq_start_mas[0])/1000)
-        SEQ_mas.append(SEQ[:,p1:p2])
+        SEQ_mas.append(SEQ[:,p1:(p2+1)])
 
 else:
     SEQ_mas=[SEQ]
@@ -138,6 +147,21 @@ def run_daiseg(lmbd_opt,seq, n_st, idx, start):
 
     return tracts_HMM
 
+def run_daiseg_all(lmbd_0):
+    tracts_HMM_mas=[]
+
+    
+    for idx in range(0, len(seq)):    
+        tracts_HMM=[[],[]]
+        for i in range(len(SEQ_mas)):
+            tr=run_daiseg(lmbd_0, SEQ_mas[i], N_st, idx, seq_start_mas[i])
+            for j in range(N):   
+               for k in tr[j]:             
+                   tracts_HMM[j].append( k )
+ 
+
+        tracts_HMM_mas.append([tracts_HMM[j] for j in range(N)])
+    return tracts_HMM_mas
 
 
 
@@ -176,58 +200,23 @@ epsilon = 1e-6
 def EM_gaps(seq, lambda_0, n_st):
     return EM.EM_algorithm_gaps(P, seq, n_st, MU, RR, lambda_0, epsilon, L, int(args.EM_steps), gaps_numbers )
 
-tracts_HMM_result = []
-if args.EM=='no':
-    tracts_HMM_mas=[]
-    
-    for idx in range(0, len(seq)):    
-        tracts_HMM=[[],[],[],[],[]]
-        for i in range(len(SEQ_mas)):
-            tr=run_daiseg(Lambda_0, SEQ_mas[i], N_st, idx, seq_start_mas[i] )
-            
-            for j in range(N):   
-               for k in tr[j]:             
-                   tracts_HMM[j].append( k )
- 
- 
-
-        tracts_HMM_mas.append([tracts_HMM[j] for j in range(N)])
+if args.EM=='no': 
+    Tracts_HMM_mas = run_daiseg_all(Lambda_0)
 
 
 
 
         
 if args.EM=='yes': 
-    
-#    if args.EM_est == 'coal':
-            
-#        Lambda_opt = EM_function3(SEQ, Lambda_0)
 
-        
-#    if args.EM_est == 'all':
-#        Lambda_opt = EM_function2(SEQ, Lambda_0)
-    Lambda_opt = EM_gaps(SEQ, Lambda_0, N_st)
-    
-    tracts_HMM_mas=[]
-    
-    for idx in range(0, len(seq)):    
-        tracts_HMM=[[],[],[],[],[]]
-        for i in range(len(SEQ_mas)):
-            tr=run_daiseg(Lambda_opt, SEQ_mas[i], N_st, idx, seq_start_mas[i] )
-            
-            for j in range(N):   
-               for k in tr[j]:             
-                   tracts_HMM[j].append( k )
- 
- 
-
-        tracts_HMM_mas.append([tracts_HMM[j] for j in range(N)])
+    Lambda_opt = EM_gaps(SEQ, Lambda_0, N_st)    
+    Tracts_HMM_mas = run_daiseg_all(Lambda_opt)
         
       
 
 
 with open(args.o, "w") as f:
-   for i in tracts_HMM_mas:
+   for i in Tracts_HMM_mas:
        f.write(str(i[1])+'\n') 
 
 

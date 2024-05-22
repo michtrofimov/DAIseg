@@ -471,7 +471,7 @@ def EM_algorithm_gaps(p,o_mas, n_states, mu, rr, lambda_0, epsilon, cut, n_em_st
             print('Oops. something went wrong with sample')
             return(lambda_0)
         em_steps += 1
-        print(lmbd_new-lmbd)
+
         if LNG.norm(lmbd_new-lmbd) < epsilon:
             break
         lmbd = lmbd_new
