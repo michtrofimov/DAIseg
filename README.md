@@ -58,7 +58,7 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 
 
-* __ancestral.alleles.file.txt__  file with information about ancestral allels ("-1"=="no information").
+* __ POS.AA.chr22.txt__  file with information about ancestral allels ("-1"=="no information").
   ```note
   position1 -1
   position2 A
@@ -70,7 +70,7 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 
 ## Step 0. Merging 1000GP  and Archaic genomes
-Download [1000GP panel][1] and  archaic samples  [Link1][2] and [Link2][3]. Make .txt files with samples' names  __eu.txt__, __na.txt__, __yri.txt__ and __mex.txt__ and  __archaic.txt__
+Download [1000GP panel][1] and  archaic samples  [Link1][2] and [Link2][3]. Make .txt files with samples' names  obs.samples.txt, outgroup.txt, archaic.txt
 
 Add full path to files  of 1000GP,  Altai.Neanderthal, Vindija33.19, Chagyrskaya/Okladnikova to variables NAME1000 and n1, n2, n3 in  panel.preparation.*.sh and run 
 
@@ -83,7 +83,8 @@ The resulting vcf.gz file is all.chr22.vcf.gz{.tbi}
 
 ## Step 1.  Make observations (~ 3 min for two samples)
 
-You need  __all.chr22.vcf.gz{.tbi}__,  __outgroup.txt__, __observations.txt__, __archaic.txt__ to run  
+You need  vcf file, lists of samples obs.samples.txt, outgroup.txt, archaic.txt and file with [ancestral alleles positions][4]
+ to run  
 
 >./make.obs.sh 22 all.chr22.vcf.gz obs.samples.txt Outgroup.txt archaic.txt  POS.AA.chr22.txt
 
