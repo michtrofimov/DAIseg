@@ -37,7 +37,7 @@ DAIseg method is created to detect ancient introgressed segments using unadmixed
     ...
     ...
     ```
-where each two lines correspond to the one diploid sample from obs.samples.txt.
+    where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 *  __pos.chr22.txt__ first-last positions of desired region
     ```note
@@ -54,7 +54,7 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
   position3 C
   ...
   ```
-The link on the [ancestral alles files based on hg19][4] 
+   The link on the [ancestral alles files based on hg19][4] 
 
 
 
