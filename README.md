@@ -54,7 +54,7 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
   position3 C
   ...
   ```
-  The link on the ancestral alles files based on hg19 is https://drive.google.com/file/d/1Vw-QEG9uu1trkbGHpDVXhMlbGt-RQhbN/view?usp=sharing
+The link on the [ancestral alles files based on hg19][4] 
 
 
 
