@@ -88,7 +88,7 @@ and to make observation files obs.neand.chr22.txt, obs.outgroup.chr22.txt
 
 ## Run DAI.seg without EM algorithm
 ```bash
-python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.chr22.txt
+python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.chr22.txt --obs_archaic obs.archaic.chr22.txt --o out.chr22.txt
 ```
 
 where the examples par.file.txt, pos.chr22.txt, POS.AA.chr22.txt could be found in the main directory
