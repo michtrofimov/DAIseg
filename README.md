@@ -45,9 +45,7 @@ DAIseg method is created to detect ancient introgressed segments using unadmixed
     ```
 
 
-
-
-* __ POS.AA.chr22.txt__  file with information about ancestral allels ("-1"=="no information").
+*  __POS.AA.chr22.txt__  file with information about ancestral allels ("-1"=="no information").
   ```note
   position1 -1
   position2 A
