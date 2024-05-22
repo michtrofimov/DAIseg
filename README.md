@@ -85,20 +85,20 @@ and to make observation files obs.neand.chr22.txt, obs.outgroup.chr22.txt
 
 
 ## Step 2.1 Run DAI.seg without EM algorithm
->  python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
+```bash
+  python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
+```
 
+where the examples par.file.txt could be found in the main directory
 
-where  par.file.txt is in main directory
 ## Step 2.1 Run DAI.seg using EM algorithm
 
-par.file.txt obtained on the Step 1 could be used as the initial guess for EM algorithm.
+Run 
+```bash
+  python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
+```
+to obtain estimations of the  coalescent times and run DAIseg. Here par.file.txt is used as the initial guess for EM algorithm.
 
-
-use
-> python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr.22.txt --HMM_par par.file.txt --EM yes --EM_steps 5 --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
-
-
-to obtain estimations of the  coalescent times and run DAIseg.
 
 [1]: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
 [2]: http://cdna.eva.mpg.de/neandertal/Vindija/VCF/
