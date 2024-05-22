@@ -13,17 +13,17 @@ DAIseg method is created to detect ancient introgressed segments using unadmixed
 
 
 *  __par.file.txt__
-  ```note
-  29 # years per generation
-  1.25e-08    #mutation rate μ
-  1e-08    #recombination rate
-  1000    #window size
-  t_arch^c    #Coalescent time of AMH and Neanderthals
-  t_split^c    #Coalescent time out of Africa 
-  t_intr^c    #coalescent time of archaic segments in modern genome with neanderthal samples
-  t_intr #introgression time 
-  0.025    #admixture proportion of archaic introgression
-  ```
+```note
+29 # years per generation
+1.25e-08    #mutation rate μ
+1e-08    #recombination rate
+1000    #window size
+t_arch^c    #Coalescent time of AMH and Neanderthals
+t_split^c    #Coalescent time out of Africa 
+t_intr^c    #coalescent time of archaic segments in modern genome with neanderthal samples
+t_intr #introgression time 
+0.025    #admixture proportion of archaic introgression
+```
 
 By default, the  time values are  550.000, 70.000, 55.000, 55.000 are used to make  initiall guess for the EM algorithm on Step 2. These values are good to find archqic segments but using EM algorithm allows to find short segments.
 
