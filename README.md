@@ -69,24 +69,17 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 
 
-## Step 0. Merging 1000GP  and Archaic genomes (~5 min)
-Download 1000GP panel 
->http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
+## Step 0. Merging 1000GP  and Archaic genomes
+Download [1000GP panel][1] and  archaic samples  [Link1][2] and [Link2][3]. Make .txt files with samples' names  __eu.txt__, __na.txt__, __yri.txt__ and __mex.txt__ and  __archaic.txt__
 
-and  archaic samples 
->http://cdna.eva.mpg.de/neandertal/Vindija/VCF/
->http://ftp.eva.mpg.de/neandertal/ChagyrskayaOkladnikov/ (split by chromosomes!)
+Add full path to files  of 1000GP,  Altai.Neanderthal, Vindija33.19, Chagyrskaya/Okladnikova to variables NAME1000 and n1, n2, n3 in  panel.preparation.*.sh and run 
 
-Make .txt files with samples' names  __outgroup.txt__, __obs.samples.txt__, __archaic.txt__
-
-Add full path to files  of 1000GP and three neanderthals to variables __$NAME1000__ and __$n1, $n2, $n3__ in  __panel.preparation.sh__ , change $CHR variable and run 
-> ./panel.preparation.Linux.sh 22 obs.samples.txt outgroup.txt__ (for OS Linux)
-
-or
-
-> ./panel.preparation.MacOS.sh 22 obs.samples.txt outgroup.txt__
+```bash
+./panel.preparation.Linux.sh 22 obs.samples.txt outgroup.txt__
+```
  
-The resulting vcf.gz file is __all.chr22.vcf.gz{.tbi}__
+The resulting vcf.gz file is all.chr22.vcf.gz{.tbi}
+
 
 ## Step 1.  Make observations (~ 3 min for two samples)
 
@@ -116,4 +109,7 @@ use
 
 to obtain estimations of the  coalescent times and run DAIseg.
 
-
+[1]: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz 
+[2]: http://cdna.eva.mpg.de/neandertal/Vindija/VCF/
+[3]: http://ftp.eva.mpg.de/neandertal/ChagyrskayaOkladnikov/
+[4]: https://drive.google.com/file/d/1Vw-QEG9uu1trkbGHpDVXhMlbGt-RQhbN/view?usp=sharing
