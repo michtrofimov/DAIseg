@@ -55,6 +55,10 @@ DAIseg method is created to detect ancient introgressed segments using unadmixed
    The link on the [ancestral alles files based on hg19][4] 
 
 
+* __gaps.by.pos.chr.22.txt__ is file with list of gaps
+  ```note
+  [[a,b], [c,d]. [e,f]]
+  ```
 
 ## Merging 1000GP  and Archaic genomes
 Download [1000GP panel][1] and  archaic samples  [Link1][2] and [Link2][3]. Make .txt files with samples' names  obs.samples.txt, outgroup.txt, archaic.txt
