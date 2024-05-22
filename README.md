@@ -75,10 +75,11 @@ The resulting vcf.gz file is all.chr22.vcf.gz{.tbi}
 You need  vcf file, lists of samples obs.samples.txt, outgroup.txt, archaic.txt and file with [ancestral alleles positions][4]
  to run  
 
->./make.obs.sh 22 all.chr22.vcf.gz obs.samples.txt Outgroup.txt archaic.txt  POS.AA.chr22.txt
+```bash
+./make.obs.sh 22 all.chr22.vcf.gz obs.samples.txt Outgroup.txt archaic.txt  POS.AA.chr22.txt
+```
 
-and to make observation files __obs.neand.txt__, __obs.outgroup.txt__ and the file with default parameters and start-end positions __par.file.txt__ (see the File's summary paragraph). 
-
+and to make observation files obs.neand.chr22.txt, obs.outgroup.chr22.txt
 
 
 
