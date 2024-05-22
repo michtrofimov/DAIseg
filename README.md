@@ -2,17 +2,6 @@
 # DAIseg
 DAIseg method is created to detect ancient introgressed segments using unadmixed outgroup population and several reference archaic genomes. 
 
-__Input__: .vcf.gz{.tbi} file where merging all Neanderthal, Outgroupand  ingroup observable samples together and three .txt files with ids of each group.
-
-__Output__: .txt file where each line corresponds to the array of tracts with archaic ancestries.
-
-
-# Pipeline briefly
-0. (optionally) Run __panel.preparation.Linux.sh obs.samples.txt outgroup.txt__(or __panel.preparation.MacOS.sh__) with samples' name files to merge 1000GP, neanderthal samples and obtain .vcf.gz file.
-1. Using .vcf.gz{.tbi} and files with samples's names to run __./make.obs.sh outgroup.txt archaic.txt obs.samples.txt__ to make observation files.
-3. Run __dai.seg.py__ to obtain archaic tracts of samples from  __observations.txt__  with the posssibility of using EM algorithm.
-
-
 
 # Files's summary
 *  __outgroup.txt__(Africa), __archaic.txt__(Neanderthals)  and __obs.samples.txt__(European), are .txt files which consist of the samples' ids of reference Africans, Neanderthals and observable Europeans written in a column
