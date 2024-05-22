@@ -58,7 +58,7 @@ where each two lines correspond to the one diploid sample from obs.samples.txt.
 
 
 
-## Step 0. Merging 1000GP  and Archaic genomes
+## Merging 1000GP  and Archaic genomes
 Download [1000GP panel][1] and  archaic samples  [Link1][2] and [Link2][3]. Make .txt files with samples' names  obs.samples.txt, outgroup.txt, archaic.txt
 
 Add full path to files  of 1000GP,  Altai.Neanderthal, Vindija33.19, Chagyrskaya/Okladnikova to variables NAME1000 and n1, n2, n3 in  panel.preparation.*.sh and run 
@@ -70,7 +70,7 @@ Add full path to files  of 1000GP,  Altai.Neanderthal, Vindija33.19, Chagyrskaya
 The resulting vcf.gz file is all.chr22.vcf.gz{.tbi}
 
 
-## Step 1.  Make observations (~ 3 min for two samples)
+## Make observations 
 
 You need  vcf file, lists of samples obs.samples.txt, outgroup.txt, archaic.txt and file with [ancestral alleles positions][4]
  to run  
@@ -84,14 +84,14 @@ and to make observation files obs.neand.chr22.txt, obs.outgroup.chr22.txt
 
 
 
-## Step 2.1 Run DAI.seg without EM algorithm
+## Run DAI.seg without EM algorithm
 ```bash
   python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
 ```
 
 where the examples par.file.txt could be found in the main directory
 
-## Step 2.1 Run DAI.seg using EM algorithm
+## Run DAI.seg using EM algorithm
 
 Run 
 ```bash
