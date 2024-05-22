@@ -108,7 +108,7 @@ with open('pos.chr'+str(CHR)+'.txt','w') as f:
     f.write(str(lines_yri[0,0])+' ' +str(lines_yri[-1,0])+'\n')
 
 
-with open('obs.outgroup.txt', "w") as file1,  open('obs.neand.txt', "w") as file2:
+with open('obs.outgroup.chr'+str(CHR)+'.txt', "w") as file1,  open('obs.archaic.chr'+str(CHR)+'.txt', "w") as file2:
     for j in range(len(SEQ[0])):
         s1, s2 = '',''
         for i in range(n_eu):
