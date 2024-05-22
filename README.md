@@ -95,7 +95,6 @@ where the examples par.file.txt, pos.chr22.txt, POS.AA.chr22.txt could be found 
 
 ## Run DAI.seg using EM algorithm
 
-Run 
 ```bash
 python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.chr22.txt
 ```
