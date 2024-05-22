@@ -84,7 +84,7 @@ and to make observation files obs.neand.chr22.txt, obs.outgroup.chr22.txt
 
 ## Run DAI.seg without EM algorithm
 ```bash
-python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
+python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.chr22.txt
 ```
 
 where the examples par.file.txt could be found in the main directory
@@ -93,7 +93,7 @@ where the examples par.file.txt could be found in the main directory
 
 Run 
 ```bash
-python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.txt
+python3 dai.seg.py --location pos.chr22.txt --gaps gaps.by.pos.chr22.txt --HMM_par par.file.txt --EM no --obs_af obs.outgroup.txt --obs_archaic obs.neand.txt --o out.chr22.txt
 ```
 to obtain estimations of the  coalescent times and run DAIseg. Here par.file.txt is used as the initial guess for EM algorithm.
 
