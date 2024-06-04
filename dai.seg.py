@@ -19,6 +19,8 @@ parser.add_argument('--o', type= str, help = 'Name of output file' )
 parser.add_argument('--EM_est', type= str, help = 'Make estimation of the all parameters or only coalescent times' )
 parser.add_argument('--obs_af', type=str, help='File with observations with respect to Africans')
 parser.add_argument('--obs_archaic', type=str, help='File with observations with respect to Archaic reference genomes')
+parser.add_argument('--obs_samples', type=str, help='File with samples names')
+
 
 args = parser.parse_args()
 
@@ -213,11 +215,18 @@ if args.EM=='yes':
     Tracts_HMM_mas = run_daiseg_all(Lambda_opt)
         
       
+with open(args.obs_samples,'r') as f:
+    names=f.readlines()
 
+names=[str(names[i].replace('\n','')) for i in range(len(names))]
+print(names)  
 
 with open(args.o, "w") as f:
-   for i in Tracts_HMM_mas:
-       f.write(str(i[1])+'\n') 
+   for i in range(len(Tracts_HMM_mas)):
+       if i % 2 ==0:
+           f.write(names[int(i // 2)]+'\t0\t'+str(Tracts_HMM_mas[i][1])+'\n')
+       else:
+           f.write(names[int(i // 2)]+'\t1\t'+str(Tracts_HMM_mas[i][1])+'\n')       
 
 
 
